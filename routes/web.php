@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,18 @@ Route::controller(HomeController::class)->group(function(){
     Route::get('/', 'index')->name('home');
 });
 
+Route::controller(ClientController::class)->group(function(){
+
+    Route::get('/category/{id}/{slug}','categoryPage')->name('category');
+    Route::get('/single-product/{id}/{slug}','singleProduct')->name('singleproduct');
+    Route::get('/add-to-cart','addToCart')->name('addtocart');
+    Route::get('/check-out','checkOut')->name('checkout');
+    Route::get('/user-profile','userProfile')->name('userprofile');
+    Route::get('/new-release','newRelease')->name('newrelease');
+    Route::get('/todays-deal','todaysDeal')->name('todaysdeal');
+    Route::get('/customer-service','customerService')->name('customerservice');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 
@@ -34,6 +47,8 @@ Route::middleware(['auth','role:user'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
 
 Route::middleware('auth','role:admin')->group(function(){
 

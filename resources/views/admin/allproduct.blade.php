@@ -60,7 +60,7 @@ All Product -Ecom
                      <a href="{{route('editimage',$product->id)}}:" class="btn btn-success">Update</a>
                     </td>
                     <td>
-                        <a href="{{route('editproduct',$product->id)}}" class="btn btn-success">Edit</a> | <a href="{{route('deleteproduct',[$id,$pcname,$psname])}}"  class="btn btn-warning">Delete</a>
+                        <a href="{{route('editproduct',$product->id)}}" class="btn btn-success">Edit</a> | <a href="{{route('deleteproduct',[$id,$pcname,$psname])}}" onclick="return confirm('Are you sure?')" class="btn btn-warning">Delete</a>
                     </td>
                 </tr>
                 @endforeach

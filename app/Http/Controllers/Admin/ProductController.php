@@ -37,7 +37,7 @@ class ProductController extends Controller
  'productLongDescription'=>'required',
      'productCategoryId' =>'required',
   'productSubcategoryId' =>'required',
-          'productImage' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:1024',
+          'productImage' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
         ]);
 
 
@@ -126,7 +126,7 @@ return redirect()->route('allproduct')->with('update','Data Successfully Updated
 
         $id=$request->id;
         $request->validate([
-          'productImage' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:1024',
+          'productImage' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048',
         ]);
 
         $image=$request->file('productImage');
@@ -135,7 +135,10 @@ return redirect()->route('allproduct')->with('update','Data Successfully Updated
         $request->productImage->move(public_path('image'),$imgName);
         $imgurl='image/'.$imgName;
 
-        Product::findorfail($id)->update([
+
+        $imagepath= Product::findorfail($id); //use id to get image path from db
+        unlink($imagepath->productImage); // unlink or remove image from public image folder
+        $imagepath->update([
             'productImage' => $imgurl,
         ]);
 
@@ -146,7 +149,10 @@ return redirect()->route('allproduct')->with('update','Data Successfully Updated
 
     public function deleteProduct($id,$pcname,$psname){
 
-        Product::findorfail($id)->delete();
+        $imagepath=Product::findorfail($id);
+        unlink( $imagepath->productImage);
+        $imagepath->delete();
+
         Category::where('categoryName',$pcname)->decrement('productCount',1);
         SubCategory::where('subcategoryName',$psname)->decrement('productCount',1);
         return redirect()->route('allproduct')->with('delete','Product Successfully Deleted');
