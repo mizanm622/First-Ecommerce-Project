@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -16,9 +17,12 @@ class ClientController extends Controller
    }
 
    public function singleProduct($id){
-    $products=Product::findorfail($id);
+    $products=Product::findorfail($id); //get single product from product table
+    $productsubcatid=Product::where('id',$id)->value('producSubcategoryId'); //get sub cat id from product table
+    $getallsubcatproduct=Product::where('producSubcategoryId',$productsubcatid)->latest()->get(); // get all sub cat related product to display the              single product table as a related poduct.
 
-    return view('user.product', compact('products'));
+
+    return view('user.product', compact('products','getallsubcatproduct'));
 }
 
    public function addToCart(){

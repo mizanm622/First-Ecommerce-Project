@@ -23,7 +23,7 @@ Home -Ecom
                          <div class="box_main">
                             <h4 class="shirt_text">{{$allproduct->productName}}</h4>
                             <p class="price_text">Price  <span style="color: #262626;">BDT {{$allproduct->price}}/- Taka</span></p>
-                            <div class="tshirt_img"><img src="{{asset($allproduct->productImage)}}"></div>
+                            <div class="tshirt_img"><img style="height:250px" src="{{asset($allproduct->productImage)}}"></div>
                             <div class="btn_main">
                                <div class="buy_bt"><a href="#">Buy Now</a></div>
                                <div class="seemore_bt"><a href="{{route('singleproduct',[$allproduct->id, $allproduct->slug])}}">See More</a></div>
