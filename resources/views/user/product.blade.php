@@ -25,7 +25,18 @@ Product -Ecom
                             </ol>
 
                             <div class="btn_main my-3">
-                                <div><a class="btn btn-warning" href="#">Add To Cart</a></div>
+                            <form action="{{route('addproducttocart')}}" method="post">
+                                @csrf
+
+                                    <input type="hidden" value="{{$products->id}}" name="productId">
+                                    <input type="hidden" value="{{$products->price}}" name="price">
+                                    <div class="form-group">
+                                        <label for="quantity">Quanity</label>
+                                        <input type="number" class="form-control" name="productQuantity" min="1" placeholder="1">
+
+                                    </div>
+                                    <div><input type="submit" class="btn btn-warning" value="Add To Cart"></div>
+                            </form>
 
                             </div>
                         </div>
@@ -49,8 +60,14 @@ Product -Ecom
                                             <p class="price_text">Price  <span style="color: #262626;">BDT {{ $products->price}}/- Taka</span></p>
                                             <div class="tshirt_img"><img style="height:250px" src="{{asset($products->productImage)}}"></div>
                                             <div class="btn_main">
-                                                <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                                <div class="seemore_bt"><a href="{{route('singleproduct',[$products->id, $products->slug])}}">See More</a></div>
+                                                 <form action="{{route('addproducttocart')}}" method="post">
+                                                  @csrf
+                                                 <input type="hidden" value="{{$products->id}}" name="productId">
+                                                 <input type="hidden" value="{{$products->price}}" name="price">
+                                                 <input type="hidden" value="1" name="productQuantity">
+                                                 <div class="buy_bt"><input type="submit" class="btn btn-warning" value="Buy Now"></div>
+                                                </form>
+                                                <div class="seemore_bt">  <button class="btn btn-info"><a  href="{{route('singleproduct',[$products->id, $products->slug])}}">See More</a> </button></div>
                                             </div>
                                     </div>
                             </div>

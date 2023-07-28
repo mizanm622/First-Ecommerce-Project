@@ -25,10 +25,16 @@ Category -Ecom
                                 <h4 class="shirt_text">{{$allproduct->productName}}</h4>
                                 <p class="price_text">Price  <span style="color: #262626;">BDT {{$allproduct->price}}/- Taka</span></p>
                                 <div class="tshirt_img"><img style="height:250px" src="{{asset($allproduct->productImage)}}"></div>
-                                    <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                    <div class="seemore_bt"><a href="{{route('singleproduct',[$allproduct->id, $allproduct->slug])}}">See More</a></div>
-                                    </div>
+                                <div class="btn_main">
+                                    <form action="{{route('addproducttocart')}}" method="post">
+                                     @csrf
+                                    <input type="hidden" value="{{$allproduct->id}}" name="productId">
+                                    <input type="hidden" value="{{$allproduct->price}}" name="price">
+                                    <input type="hidden" value="1" name="productQuantity">
+                                    <div class="buy_bt"><input type="submit" class="btn btn-warning" value="Buy Now"></div>
+                                   </form>
+                                   <div class="seemore_bt">  <button class="btn btn-info"><a  href="{{route('singleproduct',[$allproduct->id, $allproduct->slug])}}">See More</a> </button></div>
+                               </div>
                             </div>
                         </div>
                       @endforeach

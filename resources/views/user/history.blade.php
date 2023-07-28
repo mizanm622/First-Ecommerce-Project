@@ -1,10 +1,9 @@
 @extends('user.usertemplate')
 
 @section('page-title')
-User Profile -Ecom
+User Hostiry -Ecom
 @endsection
 
 @section('user-profile')
-User Profile
-
+User Hostiry
 @endsection

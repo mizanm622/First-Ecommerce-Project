@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
@@ -26,8 +28,32 @@ class ClientController extends Controller
 }
 
    public function addToCart(){
+    $userId=Auth::id();
+    $cartitems=Cart::where('userId', $userId)->latest()->get();
 
-    return view('user.addtocart');
+    return view('user.addtocart',compact('cartitems'));
+}
+
+public function removeCartItem($id){
+    Cart::where('id',$id)->delete();
+    return redirect()->route('addtocart')->with('msg','Product Successfully Removed');
+}
+
+public function addProductToCart(Request $request){
+    $quantity=$request->productQuantity;
+    $price=$request->price;
+
+    $totalprice=$quantity*$price;
+
+    Cart::insert([
+
+        'productId'=>$request->productId,
+        'userId'=>Auth::id(),
+        'price'=>$totalprice,
+        'productQuantity'=>$request->productQuantity,
+    ]);
+
+    return redirect()->route('addtocart')->with('msg','Product Order Successfully Inserted');
 }
 
    public function checkOut(){
@@ -36,6 +62,14 @@ class ClientController extends Controller
 
    public function userProfile(){
     return view('user.userprofile');
+}
+
+public function pendingOrders(){
+    return view('user.pendingorder');
+}
+
+public function history(){
+    return view('user.history');
 }
 
 public function newRelease(){

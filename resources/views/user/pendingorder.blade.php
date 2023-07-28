@@ -1,10 +1,10 @@
 @extends('user.usertemplate')
 
 @section('page-title')
-User Profile -Ecom
+Pending Order -Ecom
 @endsection
 
 @section('user-profile')
-User Profile
+Pending Order
 
 @endsection
