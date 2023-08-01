@@ -1,14 +1,14 @@
 @extends('admin.layouts.template')
 
 @section('page-title')
-Order -Ecom
+Place Order -Ecom
 @endsection
 
 @section('content')
 
 <section class="container">
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> Page/</span> Available Orders Info</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> Page</span> Placed Order Info</h4>
        @if (session()->has('msg'))
            <div class="alert alert-success">
             {{session()->get('msg')}}
@@ -16,19 +16,15 @@ Order -Ecom
        @endif
         <!-- Basic Bootstrap Table -->
         <div class="card">
-          <h5 class="card-header"> Available New Pending Orders </h5>
+          <h5 class="card-header"> Available Place Orders</h5>
 
           @php
           $subtotal=0;
           $i=0;
           $customerinfo=$pendingOrders->first();
-
           @endphp
           <div class="table-responsive text-wrap">
             <table class="table">
-                @if (!empty($customerinfo))
-
-
                 <thead>
                     <tr><th>User Id  :{{$customerinfo->userId}}</th></tr>
                     <tr><th>Address  :{{ $customerinfo->address}}</th></tr>
@@ -70,35 +66,15 @@ Order -Ecom
                 @endforeach
                 <tr><td class="text-right m-auto">Subtotal=</td>
                     <td>{{$subtotal}}/-</td>
-                    <td>
-                        <form action="{{route('shiporder')}}" method="post">
-                            @csrf
-                            <input type="hidden" value="{{$customerinfo->userId}}" name="userId">
-                            <input type="submit" class="btn btn-success" value="Place!" >
-                        </form>
-                        <form action="" method="POST">
-                            @csrf
-                            <input type="hidden" value="{{$customerinfo->userId}}" name="userId">
-                            <input type="submit" class="btn btn-warning" value="Canceal" >
-                        </form>
-                    </td>
+
                 </tr>
               </tbody>
-
-              @endif
-              @if (empty($customerinfo))
-
-              <h2 class="alert alert-warning text-center my-3">Order Not Found!</h2>
-
-              @endif
-
-            </table>
-            <table class="table">
-
             </table>
 
 
           </div>
+
+
         </div>
     </div>
         <!--/ Basic Bootstrap Table -->

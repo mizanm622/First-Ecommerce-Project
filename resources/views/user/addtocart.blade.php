@@ -15,8 +15,12 @@ Cart -Ecom
                  </div>
                  @endif
                 <table class="table">
+                    <div>
+                        <a class="btn btn-primary" href="{{route('home')}}">Continue Shopping ?</a>
+                    </div>
                     <thead class="thead-dark">
                         <tr>
+
                             <th scope="col">Index</th>
                             <th scope="col">Product Name</th>
                             <th scope="col">Image</th>
@@ -54,7 +58,7 @@ Cart -Ecom
                         @endforeach
                         @if ($subtotal!=0)
                         <tr>
-                            <td></td><td></td><td></td><td></td><td>Sub Total=</td><td>{{$subtotal}}/-</td><td><a class="btn btn-info" href="">Check Out Now!</a></td>
+                            <td></td><td></td><td></td><td></td><td>Sub Total=</td><td>{{$subtotal}}/-</td><td><a class="btn btn-info" href="{{route('shippinginfo')}}">Check Out Now!</a></td>
                         </tr>
                         @else
                         <tr>

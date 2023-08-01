@@ -121,9 +121,9 @@
             </li>
 
             <!--Category area-->
-            <li class="menu-header small text-uppercase">
+            {{-- <li class="menu-header small text-uppercase">
               <span class="menu-header-text">Pages</span>
-            </li>
+            </li> --}}
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
@@ -148,9 +148,9 @@
               </ul>
             </li>
               <!--Sub Category area-->
-              <li class="menu-header small text-uppercase">
+              {{-- <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Pages</span>
-              </li>
+              </li> --}}
               <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                   <i class="menu-icon tf-icons bx bx-dock-top"></i>
@@ -176,9 +176,9 @@
               </li>
 
                  <!--Product area-->
-                 <li class="menu-header small text-uppercase">
+                 {{-- <li class="menu-header small text-uppercase">
                   <span class="menu-header-text">Pages</span>
-                </li>
+                </li> --}}
                 <li class="menu-item">
                   <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-dock-top"></i>
@@ -204,9 +204,9 @@
                 </li>
 
                  <!--Order area-->
-                 <li class="menu-header small text-uppercase">
+                 {{-- <li class="menu-header small text-uppercase">
                   <span class="menu-header-text">Pages</span>
-                </li>
+                </li> --}}
                 <li class="menu-item">
                   <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-dock-top"></i>
@@ -219,7 +219,7 @@
                       </a>
                     </li>
                     <li class="menu-item">
-                      <a href="{{route('admindashboard')}}" class="menu-link">
+                      <a href="{{route('orderplace')}}" class="menu-link">
                         <div data-i18n="Notifications">Booking Order</div>
                       </a>
                     </li>

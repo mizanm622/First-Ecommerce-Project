@@ -41,6 +41,9 @@ Route::middleware(['auth','role:admin'])->group(function () {
 Route::controller(ClientController::class)->group(function(){
     Route::get('/add-to-cart','addToCart')->name('addtocart');
     Route::post('/add-product-to-cart','addProductToCart')->name('addproducttocart');
+    Route::get('/shipping-address','shippingInfo')->name('shippinginfo');
+    Route::post('/store-shipping-info','storeShippingInfo')->name('storeshippinginfo');
+    Route::post('/place-order','placeOrder')->name('placeorder');
     Route::get('/check-out','checkOut')->name('checkout');
     Route::get('/user-profile','userProfile')->name('userprofile');
     Route::get('/user-profile/pending-orders','pendingOrders')->name('pendingorders');
@@ -119,6 +122,8 @@ Route::middleware('auth','role:admin')->group(function(){
      Route::controller(OrderController::class)->group(function(){
 
         Route::get('/admin/pending-order', 'index')->name('pendingorder');
+        Route::post('/admin/ship-order', 'shipOrder')->name('shiporder');
+        Route::get('/admin/order-place', 'orderPlace')->name('orderplace');
        // Route::get('/admin/add-order', 'addOrder')->name('addorder');
 
     });
